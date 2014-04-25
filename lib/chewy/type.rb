@@ -5,7 +5,7 @@ module Chewy
     def self.new(index, target, options = {}, &block)
       type = Class.new(Chewy::Type::Base)
 
-      adapter = if (defined? ActiveRecord) && (target.is_a?(Class) && target < ActiveRecord::Base) || target.is_a?(::ActiveRecord::Relation)
+      adapter = if (defined? ActiveRecord) and (target.is_a?(Class) && target < ActiveRecord::Base) || target.is_a?(::ActiveRecord::Relation)
         Chewy::Type::Adapter::ActiveRecord.new(target, options)
       else
         Chewy::Type::Adapter::Object.new(target, options)
